@@ -1,5 +1,5 @@
 import TaskBoard from "./components/board/task-board";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
   return (
