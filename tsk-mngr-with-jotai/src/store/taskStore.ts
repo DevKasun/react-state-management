@@ -1,12 +1,7 @@
+import { atom } from "jotai";
 import { Task } from "../types";
-import { create } from "zustand";
 
-interface TaskState {
-  task: Task[];
-  moveTask: (takId: string, newStatus: Task["status"]) => void;
-}
-
-const INITIAL_TASKS: Task[] = [
+export const taskAtoms = atom<Task[]>([
   {
     id: "1",
     title: "Research Project",
@@ -31,15 +26,15 @@ const INITIAL_TASKS: Task[] = [
     description: "Write unit tests for core functionality",
     status: "DONE",
   },
-];
+])
 
-export const useTaskStore = create<TaskState>((set) => ({
-  task: INITIAL_TASKS,
-  moveTask: (taskId, newStatus) =>
-    set((state) => ({
-      task: state.task.map((t) =>
-        t.id === taskId ? { ...t, status: newStatus } : t
-      ),
-    }),
-    ),
-}));
+export const moveTaskAtom = atom(
+  null,
+  (get, set, { taskId, newStatus }: { taskId: string; newStatus: Task["status"] }) => {
+    const tasks = get(taskAtoms);
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, status: newStatus } : task
+    );
+    set(taskAtoms, updatedTasks);
+  }
+);
