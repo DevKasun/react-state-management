@@ -38,3 +38,9 @@ export const moveTaskAtom = atom(
     set(taskAtoms, updatedTasks);
   }
 );
+
+export const deleteTaskAtom = atom(null, (get, set, taskId: string) => {
+  const tasks = get(taskAtoms);
+  const updatedTasks = tasks.filter((task) => task.id !== taskId);
+  set(taskAtoms, updatedTasks);
+});
