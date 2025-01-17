@@ -1,14 +1,13 @@
 import { useDraggable } from '@dnd-kit/core';
 import { Task } from '../../types';
-import { useAtom, useSetAtom } from 'jotai';
-import { deleteTaskAtom, taskAtoms } from '../../store/taskStore';
+import { useSetAtom } from 'jotai';
+import { deleteTaskAtom } from '../../store/taskStore';
 
 interface TaskCardProps {
 	task: Task;
 }
 
 function TaskCard({ task }: TaskCardProps) {
-	const [tasks] = useAtom(taskAtoms);
 	const deleteTaskAtomFn = useSetAtom(deleteTaskAtom);
 
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
