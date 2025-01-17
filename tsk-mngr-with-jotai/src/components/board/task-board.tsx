@@ -46,7 +46,7 @@ function TaskBoard() {
 	return (
 		<section>
 			<Container>
-				<div className='flex flex-col md:flex-row gap-4 py-8'>
+				<div className='flex flex-col md:flex-row gap-8 py-8'>
 					<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 						{COLUMNS.map((column) => {
 							return (
