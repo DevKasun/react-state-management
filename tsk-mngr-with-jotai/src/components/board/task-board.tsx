@@ -46,6 +46,9 @@ function TaskBoard() {
 	return (
 		<section>
 			<Container>
+				<button className='bg-navbarbg px-4 py-2 mt-8 rounded-md'>
+					Add new
+				</button>
 				<div className='flex flex-col md:flex-row gap-8 py-8'>
 					<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 						{COLUMNS.map((column) => {

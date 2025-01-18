@@ -28,6 +28,11 @@ export const taskAtoms = atom<Task[]>([
   },
 ])
 
+export const addTaskAtom = atom(null, (get, set, task: Task) => {
+  const tasks = get(taskAtoms);
+  set(taskAtoms, [...tasks, task]);
+});
+
 export const moveTaskAtom = atom(
   null,
   (get, set, { taskId, newStatus }: { taskId: string; newStatus: Task["status"] }) => {

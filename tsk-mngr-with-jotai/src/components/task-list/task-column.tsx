@@ -15,7 +15,7 @@ function TaskColumn({ column, tasks }: ColumnProps) {
 	return (
 		<div className='flex-1'>
 			<h2 className='flex justify-between items-center text-2xl font-semibold mb-4'>
-				{column.title} <span className=''>+</span>
+				{column.title}
 			</h2>
 			<div ref={setNodeRef}>
 				{tasks.map((task) => (
