@@ -23,6 +23,9 @@ function TaskBoard() {
 	const moveTaskAtomFn = useSetAtom(moveTaskAtom);
 	const [isAddingTaskModelOpen, setIsAddingTaskModelOpen] = useState(false);
 
+	const openAddTaskModel = () => setIsAddingTaskModelOpen(true);
+	const closeAddTaskModel = () => setIsAddingTaskModelOpen(false);
+
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
 			activationConstraint: {
@@ -48,10 +51,19 @@ function TaskBoard() {
 	return (
 		<section>
 			<Container>
-				<button className='bg-navbarbg px-4 py-2 mt-8 rounded-md'>
+				<button
+					onClick={openAddTaskModel}
+					className='bg-navbarbg px-4 py-2 mt-8 rounded-md'
+				>
 					Add new
 				</button>
-				
+
+				{isAddingTaskModelOpen ? (
+					<div className='fixed top-40 left-0 right-0 mx-auto backdrop-filter backdrop-blur-sm bg-white p-8 rounded-md shadow-lg max-w-96'>
+						<div></div>
+					</div>
+				) : null}
+
 				<div className='flex flex-col md:flex-row gap-8 py-8'>
 					<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 						{COLUMNS.map((column) => {
