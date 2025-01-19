@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	DndContext,
 	DragEndEvent,
@@ -20,6 +21,7 @@ const COLUMNS: ColumnType[] = [
 function TaskBoard() {
 	const [tasks] = useAtom(taskAtoms);
 	const moveTaskAtomFn = useSetAtom(moveTaskAtom);
+	const [isAddingTaskModelOpen, setIsAddingTaskModelOpen] = useState(false);
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -49,6 +51,7 @@ function TaskBoard() {
 				<button className='bg-navbarbg px-4 py-2 mt-8 rounded-md'>
 					Add new
 				</button>
+				
 				<div className='flex flex-col md:flex-row gap-8 py-8'>
 					<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 						{COLUMNS.map((column) => {
